@@ -23,8 +23,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Setter;
 import org.tinylog.Logger;
 import puzzle.results.GameResult;
 import puzzle.results.GameResultRepository;
@@ -41,7 +41,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-@Data
 public final class GameController {
     @FXML
     private Label messageLabel;
@@ -70,6 +69,7 @@ public final class GameController {
     @Inject
     private GameResultRepository gameResultRepository;
 
+    @Setter
     private String playerName;
 
     private BooleanProperty isSolved = new SimpleBooleanProperty();
@@ -166,7 +166,7 @@ public final class GameController {
         final var row = GridPane.getRowIndex(source);
         final var col = GridPane.getColumnIndex(source);
 
-        Logger.debug("Click on square (%d,%d)", row, col);
+        Logger.debug("Click on square ({},{})", row, col);
 
         getDirectionFromClickPosition(row, col)
                 .ifPresentOrElse(this::performMove,
