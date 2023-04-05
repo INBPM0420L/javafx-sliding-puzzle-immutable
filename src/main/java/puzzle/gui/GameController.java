@@ -166,7 +166,7 @@ public final class GameController {
         final var row = GridPane.getRowIndex(source);
         final var col = GridPane.getColumnIndex(source);
 
-        Logger.debug("Click on square (%d,%d)", row, col);
+        Logger.debug("Click on square ({},{})", row, col);
 
         getDirectionFromClickPosition(row, col)
                 .ifPresentOrElse(this::performMove,
